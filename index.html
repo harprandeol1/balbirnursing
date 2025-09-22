@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dr. Balbir Singh Institute of Nursing | Bhagta Bhai Ka, Bathinda</title>
+  <meta name="description" content="Dr. Balbir Singh Institute of Nursing in Bhagta Bhai Ka, District Bathinda. Nursing diplomas GNM and ANM. Admissions, facilities, and contact details." />
+  <meta name="theme-color" content="#0a4aa6" />
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+  <style>
+    :root {
+      --blue-900: #0a2a66;
+      --blue-700: #0a4aa6;
+      --blue-500: #1976d2;
+      --blue-100: #e7f0ff;
+      --white: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --ring: #93c5fd;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; color: var(--text); scroll-behavior: smooth; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(1200px, 92%); margin: 0 auto; }
+
+    /* Header */
+    header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.9); backdrop-filter: blur(8px); border-bottom: 1px solid #e2e8f0; }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: .8rem 0; }
+    .brand { display: flex; align-items: center; gap: .75rem; font-weight: 800; letter-spacing: .3px; }
+    .brand .logo { width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, var(--blue-700), var(--blue-500)); display: grid; place-items: center; color: var(--white); box-shadow: var(--shadow); }
+    .brand span { font-size: 1.05rem; line-height: 1.1; }
+    nav ul { list-style: none; display: flex; gap: 1rem; padding: 0; margin: 0; }
+    nav a { padding: .5rem .75rem; border-radius: 999px; }
+    nav a:hover { background: var(--blue-100); }
+    .cta { background: var(--blue-700); color: var(--white); padding: .6rem 1rem; border-radius: 999px; box-shadow: var(--shadow); }
+    .cta:hover { background: #0b57c1; }
+
+    /* Hero with moving images (slider) */
+    .hero { position: relative; height: 72vh; min-height: 520px; color: var(--white); overflow: hidden; }
+    .slides { position: absolute; inset: 0; display: grid; }
+    .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1000ms ease; background-size: cover; background-position: center; }
+    .slide.active { opacity: 1; }
+    .hero-overlay { position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(10,42,102,.2), rgba(10,42,102,.65) 55%, rgba(10,42,102,.85)); }
+    .hero-content { position: relative; z-index: 2; height: 100%; display: grid; place-items: center; text-align: center; padding: 2rem; }
+    .hero h1 { font-size: clamp(1.8rem, 3.5vw, 3rem); margin: 0 0 .6rem; }
+    .hero p { font-size: clamp(1rem, 1.6vw, 1.25rem); opacity: .95; margin-bottom: 1rem; }
+    .hero .actions { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: .5rem; border: 1px solid transparent; padding: .75rem 1rem; border-radius: 12px; cursor: pointer; font-weight: 600; }
+    .btn.primary { background: var(--white); color: var(--blue-900); }
+    .btn.secondary { background: transparent; color: var(--white); border-color: rgba(255,255,255,.55); }
+    .btn.secondary:hover { background: rgba(255,255,255,.08); }
+
+    /* Quick facts */
+    .facts { background: var(--blue-100); padding: 1rem 0; }
+    .facts .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .fact { background: var(--white); border: 1px solid #e2e8f0; border-radius: 14px; padding: 1rem; text-align: center; box-shadow: var(--shadow); }
+    .fact .num { font-size: 1.6rem; color: var(--blue-700); font-weight: 800; }
+    .fact .label { color: var(--muted); font-size: .95rem; }
+
+    /* Sections */
+    section { padding: 4rem 0; }
+    .section-title { text-align: center; margin-bottom: 2rem; }
+    .eyebrow { color: var(--blue-700); font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: .85rem; }
+    .h2 { font-size: clamp(1.4rem, 2.4vw, 2rem); margin: .4rem 0 0; }
+    .lead { color: var(--muted); max-width: 60ch; margin: .75rem auto 0; }
+
+    /* Programs */
+    .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+    .card { background: var(--white); border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); display: grid; grid-template-rows: 180px auto; }
+    .card .media { position: relative; overflow: hidden; }
+    .card .media img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.05); transition: transform .8s ease; }
+    .card:hover .media img { transform: scale(1.1); }
+    .badge { position: absolute; top: 12px; left: 12px; background: var(--blue-700); color: var(--white); padding: .35rem .6rem; border-radius: 999px; font-size: .8rem; font-weight: 700; }
+    .card .body { padding: 1rem; }
+    .card h3 { margin: 0 0 .5rem; font-size: 1.2rem; }
+    .meta { display: flex; gap: .8rem; font-size: .9rem; color: var(--muted); margin-bottom: .6rem; flex-wrap: wrap; }
+    .card ul { margin: .6rem 0 0 1rem; color: #334155; }
+
+    /* Admissions */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .step { background: var(--white); border: 1px solid #e2e8f0; border-radius: 14px; padding: 1rem; text-align: left; box-shadow: var(--shadow); }
+    .step .step-num { width: 32px; height: 32px; border-radius: 50%; background: var(--blue-700); color: var(--white); display: grid; place-items: center; font-weight: 800; margin-bottom: .6rem; }
+
+    /* Facilities (split) */
+    .split { display: grid; grid-template-columns: 1.1fr .9fr; gap: 1.5rem; align-items: center; }
+    .features { display: grid; gap: .6rem; }
+    .feature { display: flex; gap: .6rem; align-items: flex-start; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--blue-700); margin-top: .45rem; }
+
+    /* Gallery carousel */
+    .carousel { position: relative; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow); }
+    .carousel-track { display: flex; transition: transform .6s ease; }
+    .carousel img { width: 100%; height: 380px; object-fit: cover; flex: 0 0 100%; }
+    .carousel .controls { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 .5rem; }
+    .control { background: rgba(10,74,166,.8); color: var(--white); border: 0; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; }
+
+    /* Contact */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    form { display: grid; gap: .8rem; }
+    input, select, textarea { padding: .8rem .9rem; border: 1px solid #cbd5e1; border-radius: 12px; font: inherit; }
+    input:focus, select:focus, textarea:focus { outline: 3px solid var(--ring); border-color: var(--blue-700); }
+    .submit { background: var(--blue-700); color: var(--white); border: 0; padding: .9rem 1rem; border-radius: 12px; font-weight: 700; cursor: pointer; }
+
+    /* Footer */
+    footer { background: var(--blue-900); color: var(--white); padding: 2rem 0; }
+    .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 1.5rem; }
+    .tiny { font-size: .9rem; color: #dbeafe; }
+    .copy { margin-top: 1rem; border-top: 1px solid rgba(255,255,255,.15); padding-top: 1rem; text-align: center; font-size: .9rem; }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .facts .grid { grid-template-columns: 1fr 1fr; }
+      .cards { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .split { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .foot-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <!-- SEO: JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollegeOrUniversity",
+    "name": "Dr. Balbir Singh Institute of Nursing",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Bhagta Bhai Ka",
+      "addressLocality": "Bhagta Bhai Ka",
+      "addressRegion": "Punjab",
+      "postalCode": "151206",
+      "addressCountry": "IN"
+    },
+    "department": [
+      {"@type": "EducationalOccupationalProgram","name": "General Nursing and Midwifery (GNM)","programType": "Diploma"},
+      {"@type": "EducationalOccupationalProgram","name": "Auxiliary Nurse Midwifery (ANM)","programType": "Diploma"}
+    ],
+    "url": "https://example.com",
+    "email": "mailto:admissions@dbsinursing.edu.in",
+    "telephone": "+91-00000-00000"
+  }
+  </script>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <a href="#home" class="brand">
+        <div class="logo" aria-hidden="true">🎓</div>
+        <span>Dr. Balbir Singh<br/>Institute of Nursing</span>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#admissions">Admissions</a></li>
+          <li><a href="#facilities">Facilities</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact" class="cta">Apply Now</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero with moving images -->
+  <section class="hero" id="home" aria-label="Hero">
+    <div class="slides" aria-hidden="true">
+      <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1580281657527-47a55f87d3d6?q=80&w=2000&auto=format&fit=crop');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1576765607924-b66c1f3d0c1a?q=80&w=2000&auto=format&fit=crop');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?q=80&w=2000&auto=format&fit=crop');"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content container">
+      <div>
+        <h1>Compassion. Competence. Community.</h1>
+        <p>Based in Bhagta Bhai Ka, District Bathinda, we prepare practice‑ready nurses through rigorous training, modern labs, and patient‑first values.</p>
+        <div class="actions">
+          <a href="#programs" class="btn primary">Explore Programs</a>
+          <a href="#contact" class="btn secondary">Start Your Application</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick facts -->
+  <section class="facts" aria-label="Quick facts">
+    <div class="container grid">
+      <div class="fact"><div class="num" data-count="3">0</div><div class="label">Skill Labs</div></div>
+      <div class="fact"><div class="num" data-count="200">0</div><div class="label">Clinical Beds (Affiliated)</div></div>
+      <div class="fact"><div class="num" data-count="100">0</div><div class="label">Annual Intakes</div></div>
+      <div class="fact"><div class="num" data-count="95">0</div><div class="label">Placement Rate (%)</div></div>
+    </div>
+  </section>
+
+  <!-- About & Programs -->
+  <section id="programs">
+    <div class="container section-title">
+      <div class="eyebrow">Programs</div>
+      <h2 class="h2">Diploma Programs: <span style="color:var(--blue-700)">GNM</span> &amp; <span style="color:var(--blue-700)">ANM</span></h2>
+      <p class="lead">Our curriculum blends classroom learning, simulation, and clinical rotations with partner hospitals in Bathinda district—designed to mirror best‑in‑class institutions.</p>
+    </div>
+    <div class="container cards">
+      <article class="card" aria-labelledby="gnm-title">
+        <div class="media">
+          <span class="badge">GNM</span>
+          <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=1600&auto=format&fit=crop" alt="Nursing students practicing in simulation lab" />
+        </div>
+        <div class="body">
+          <h3 id="gnm-title">General Nursing & Midwifery (GNM)</h3>
+          <div class="meta"><span>Duration: 3 Years</span><span>Eligibility: 10+2 (Science preferred)</span></div>
+          <p>Develop holistic competence in patient care, midwifery, and community health. Graduates are prepared for roles across hospitals, clinics, and public health settings.</p>
+          <ul>
+            <li>Integrated Anatomy, Physiology, Pharmacology</li>
+            <li>Extensive clinical rotations in Medicine, Surgery, OBG</li>
+            <li>Community postings across Bathinda district</li>
+          </ul>
+        </div>
+      </article>
+      <article class="card" aria-labelledby="anm-title">
+        <div class="media">
+          <span class="badge">ANM</span>
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1600&auto=format&fit=crop" alt="Student nurse providing community care" />
+        </div>
+        <div class="body">
+          <h3 id="anm-title">Auxiliary Nurse Midwifery (ANM)</h3>
+          <div class="meta"><span>Duration: 2 Years</span><span>Eligibility: 10+2 (Any stream)</span></div>
+          <p>Focus on maternal‑child health, immunization, and essential nursing skills. Ideal for community and primary care roles in rural and urban settings.</p>
+          <ul>
+            <li>Maternal & Newborn Care, Nutrition, Immunization</li>
+            <li>Primary healthcare & community outreach</li>
+            <li>Real‑world exposure through field visits</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Admissions -->
+  <section id="admissions">
+    <div class="container section-title">
+      <div class="eyebrow">Admissions</div>
+      <h2 class="h2">Your Path to Nursing Starts Here</h2>
+      <p class="lead">Follow these steps and our Admissions Team will support you throughout.</p>
+    </div>
+    <div class="container steps">
+      <div class="step"><div class="step-num">1</div><h4>Check Eligibility</h4><p>Verify 10+2 marks and age per program guidelines.</p></div>
+      <div class="step"><div class="step-num">2</div><h4>Apply Online</h4><p>Fill the application form below with documents uploaded.</p></div>
+      <div class="step"><div class="step-num">3</div><h4>Entrance/Interview</h4><p>Shortlisted candidates will be notified by email/SMS.</p></div>
+      <div class="step"><div class="step-num">4</div><h4>Admission Offer</h4><p>Confirm seat by paying fees within the deadline.</p></div>
+    </div>
+  </section>
+
+  <!-- Facilities -->
+  <section id="facilities">
+    <div class="container split">
+      <div>
+        <div class="eyebrow">Facilities</div>
+        <h2 class="h2">Modern Labs & Supportive Campus</h2>
+        <p class="lead">Well‑equipped Nursing Foundations lab, MCH lab, Community Health lab, and a simulation area to ensure hands‑on learning—plus library, computer lab, and skill development workshops.</p>
+        <div class="features">
+          <div class="feature"><div class="dot"></div><div>High‑fidelity mannequins & simulation tools</div></div>
+          <div class="feature"><div class="dot"></div><div>Affiliations with reputed hospitals in Bathinda</div></div>
+          <div class="feature"><div class="dot"></div><div>Transport, hostel options, and cafeteria</div></div>
+          <div class="feature"><div class="dot"></div><div>Mentorship & placement assistance</div></div>
+        </div>
+      </div>
+      <div class="carousel" aria-label="Campus gallery carousel">
+        <div class="carousel-track" id="carouselTrack">
+          <img src="https://images.unsplash.com/photo-1627662057415-16f3a1a6d830?q=80&w=2000&auto=format&fit=crop" alt="Campus building" />
+          <img src="https://images.unsplash.com/photo-1584559582058-8f2b2b25f98f?q=80&w=2000&auto=format&fit=crop" alt="Nursing lab equipment" />
+          <img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?q=80&w=2000&auto=format&fit=crop" alt="Library" />
+        </div>
+        <div class="controls">
+          <button class="control" aria-label="Previous" id="prevBtn">⟨</button>
+          <button class="control" aria-label="Next" id="nextBtn">⟩</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery (moving images again) -->
+  <section id="gallery">
+    <div class="container section-title">
+      <div class="eyebrow">Gallery</div>
+      <h2 class="h2">Student Life & Clinical Exposure</h2>
+      <p class="lead">A glimpse of learning moments—from skills lab to community postings.</p>
+    </div>
+    <div class="container">
+      <div class="carousel" aria-label="Student gallery carousel">
+        <div class="carousel-track" id="carouselTrack2">
+          <img src="https://images.unsplash.com/photo-1594824476967-48c8b9642738?q=80&w=2000&auto=format&fit=crop" alt="Clinical practice" />
+          <img src="https://images.unsplash.com/photo-1578496781347-c21f58b16055?q=80&w=2000&auto=format&fit=crop" alt="Student group" />
+          <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=2000&auto=format&fit=crop" alt="Skills demonstration" />
+        </div>
+        <div class="controls">
+          <button class="control" aria-label="Previous" id="prevBtn2">⟨</button>
+          <button class="control" aria-label="Next" id="nextBtn2">⟩</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Apply -->
+  <section id="contact">
+    <div class="container section-title">
+      <div class="eyebrow">Apply</div>
+      <h2 class="h2">Contact & Application</h2>
+      <p class="lead">Have questions about GNM or ANM? Reach out or apply using the form below.</p>
+    </div>
+    <div class="container contact-grid">
+      <div>
+        <h3>Contact</h3>
+        <p><strong>Address:</strong> Bhagta Bhai Ka, District Bathinda, Punjab 151206</p>
+        <p><strong>Phone:</strong> <a href="tel:+910000000000">+91‑00000‑00000</a></p>
+        <p><strong>Email:</strong> <a href="mailto:admissions@dbsinursing.edu.in">admissions@dbsinursing.edu.in</a></p>
+        <div style="border-radius:14px; overflow:hidden; box-shadow: var(--shadow); border:1px solid #e2e8f0;">
+          <iframe title="Map to campus" src="https://www.google.com/maps?q=Bhagta%20Bhai%20Ka%2C%20Bathinda%2C%20Punjab&output=embed" width="100%" height="260" style="border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+      <div>
+        <h3>Application Form</h3>
+        <form action="#" onsubmit="event.preventDefault(); alert('Thanks! We\'ll contact you soon.');">
+          <label for="program" class="tiny">Program</label>
+          <select id="program" required>
+            <option value="">Select Program</option>
+            <option value="GNM">GNM (3 Years)</option>
+            <option value="ANM">ANM (2 Years)</option>
+          </select>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:.8rem;">
+            <input type="text" placeholder="Full Name" required />
+            <input type="tel" placeholder="Mobile" required />
+          </div>
+          <input type="email" placeholder="Email" required />
+          <textarea rows="4" placeholder="Message / Questions"></textarea>
+          <button class="submit" type="submit">Submit Application</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container foot-grid">
+      <div>
+        <div class="brand" style="margin-bottom:.6rem;">
+          <div class="logo" aria-hidden="true">🎓</div>
+          <span>Dr. Balbir Singh<br/>Institute of Nursing</span>
+        </div>
+        <p class="tiny">An academic environment devoted to care, discovery, and service—serving Bhagta Bhai Ka and the Bathinda region.</p>
+      </div>
+      <div>
+        <h4>Programs</h4>
+        <p class="tiny">GNM (General Nursing & Midwifery)<br/>ANM (Auxiliary Nurse Midwifery)</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <p class="tiny"><a href="#admissions" style="color:#dbeafe;">Admissions</a> · <a href="#facilities" style="color:#dbeafe;">Facilities</a> · <a href="#contact" style="color:#dbeafe;">Contact</a></p>
+      </div>
+    </div>
+    <div class="container copy">© <span id="year"></span> Dr. Balbir Singh Institute of Nursing. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Hero slider (auto-advance)
+    const slides = document.querySelectorAll('.slide');
+    let i = 0;
+    setInterval(()=>{
+      slides[i].classList.remove('active');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('active');
+    }, 5000);
+
+    // Facts counter animation
+    const counters = document.querySelectorAll('[data-count]');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          const el = entry.target; const target = +el.dataset.count; let n = 0; const step = Math.max(1, Math.floor(target/60));
+          const inc = () => { n = Math.min(target, n + step); el.textContent = n; if(n < target) requestAnimationFrame(inc); };
+          inc(); io.unobserve(el);
+        }
+      })
+    }, { threshold: .4 });
+    counters.forEach(c => io.observe(c));
+
+    // Carousels
+    function makeCarousel(trackId, prevId, nextId){
+      const track = document.getElementById(trackId);
+      const prev = document.getElementById(prevId);
+      const next = document.getElementById(nextId);
+      const slides = track.children; let index = 0;
+      const update = () => track.style.transform = `translateX(-${index * 100}%)`;
+      prev.addEventListener('click', ()=>{ index = (index - 1 + slides.length) % slides.length; update(); });
+      next.addEventListener('click', ()=>{ index = (index + 1) % slides.length; update(); });
+      setInterval(()=>{ index = (index + 1) % slides.length; update(); }, 6000);
+    }
+    makeCarousel('carouselTrack','prevBtn','nextBtn');
+    makeCarousel('carouselTrack2','prevBtn2','nextBtn2');
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
